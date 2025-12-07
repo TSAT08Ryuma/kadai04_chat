@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>億万長者ゲーム</title>
+</head>
+<body>
+    <!-- 動画用に必要　背景黒 -->
+    <div id="all"></div>
+    <!-- タイトル部分 -->
+    <div class="header">
+        <div class="title1">
+            <h1 class="title2">Make money to spend money</h1>
+        </div>
+    </div>
+    <!-- 上部のルール説明 -->
+    <div class="rule">
+        <div class="rule1">
+            <p class="rule3">【ルール説明】</p>
+            <p>・1-43の整数を入力（重複時は当選確率が低下）</p>
+            <p>・1回200ゴールド、掛け金と当選金額はあなた次第</p>
+            <p>・ボタン⓵無限試行編 クリックしただけ楽しめる</p>
+            <p>・ボタン⓶無限試行編 軽量版</p>
+            <p>・ボタン⓷保有資産入力後クリック 一度始めたらもう戻れない</p>
+        </div>
+        <div class="rule2">
+            <p class="rule3">【賞金】</p>
+            <p>・1等:6桁一致 2億ゴールド</p>
+            <p>・2等:5桁&ボーナス数字一致 1000万ゴールド</p>
+            <p>・3等:5桁一致 30万ゴールド</p>
+            <p>・4等:4桁一致 0.68万ゴールド</p>
+            <p>・5等:3桁一致 0.1万ゴールド</p>
+        </div>
+    </div>
+    <!-- 中部の入力ゾーン -->
+    <div class="input1">
+        <p>くじ数字入力ゾーン</p>
+        <input type="number" name="" id="num0" min="1" max="43" oninput="limit()" value="1">
+        <input type="number" name="" id="num1" min="1" max="43" oninput="limit()" value="2">
+        <input type="number" name="" id="num2" min="1" max="43" oninput="limit()" value="3">
+        <input type="number" name="" id="num3" min="1" max="43" oninput="limit()" value="4">
+        <input type="number" name="" id="num4" min="1" max="43" oninput="limit()" value="5">
+        <input type="number" name="" id="num5" min="1" max="43" oninput="limit()" value="6">
+        <p>くじ引きの回数 1-10,000回</p>
+        <input type="number" name="" value="50" id="num6" min="1" max="100", oninput="limit()" oninput="kake_amount_calculation()">
+        <p>掛け金と当選額 1-10,000倍</p>
+        <input type="number" name="" value="100" id="num7" min="1" max="10000" oninput="limit()">
+        <input type="button" id="button0" value="ゲーム⓵"
+            onclick="reset_for_button1(); getValue0(); shuffle_check(); reset2()"></button>
+        <input type="button" id="button1" value="ゲーム⓶"
+            onclick="reset_for_button2(); reset_for_button2_β(); getValue0(); shuffle_check(); reset1(); movie();  sending(); update()"></button>
+        <input type="button" id="button2" value="リセット" onclick="reset_for_button1(); reset_for_button2()"></button>
+        <span id="kake_amount">1クリック：</span>
+        <p><span id="holding_money">保有ゴールド：</span><span id="comment"></span></p>
+        <input type="number" name="" id="num_asset" min="1" max="1000000000000000" oninput="holding_money()" value="1000000">
+        <input type="button" id="button_saving" value="ゲーム⓷"
+            onclick="save(); reset_for_button2(); reset_for_button2_β(); getValue0(); shuffle_check(); reset1(); movie(); sending(); update(); calculation()"></button>
+    </div>
+    <!-- 下部の結果発表ゾーン -->
+    <div>
+        <p class="kekka3">【結果発表】</p>
+        <div class="kekka">
+            <div class="kekka1">
+                <p>投資額　：<span id="answer_toushigaku"></span></p>
+                <p>当選額　：<span id="answer_tousengaku"></span></p>
+                <p>合計額　：<span id="answer_goukeigaku"></span></p>
+                <p>１等賞　：<span id="answer4"></span></p>
+                <p>２等賞　：<span id="answer5"></span></p>
+                <p>３等賞　：<span id="answer6"></span></p>
+                <p>４等賞　：<span id="answer7"></span></p>
+                <p>５等賞　：<span id="answer8"></span></p>
+                <p>はずれ　：<span id="answer9"></span></p>
+            </div>
+            <div class="kekka2">
+                <canvas id="myChart_line"></canvas>
+                <div class="kekka4">
+                    <canvas id="myChart_bar"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最終回の確認用 -->
+    <div  class="CCC">
+        <p class="kekka3">【ゲーム⓶⓷過去の結果データ全集計】</p>
+    </div>
+    <div class="kekka">
+       <div class="kekka1">
+                <p>期待値　：<span id="kitaichi"></span></p>
+                <p>１等賞　：<span id="answer4a"></span></p>
+                <p>２等賞　：<span id="answer5a"></span></p>
+                <p>３等賞　：<span id="answer6a"></span></p>
+                <p>４等賞　：<span id="answer7a"></span></p>
+                <p>５等賞　：<span id="answer8a"></span></p>
+                <p>はずれ　：<span id="answer9a"></span></p>
+        </div>
+        <div class="kekka2">
+                <canvas id="myChart_circul"></canvas>
+        </div>
+    </div>
+
+
+    <!-- 最終回の確認用 -->
+    <div id="AAA">
+        <p class="BBB">【当選番号および当選結果】</p>
+    </div>
+
+<footer class="Foot">
+    <p>copyrights 2025 Game Academy All Rights Reserved.</p>
+</footer>
+
+    <!-- 動画 -->
+    <div id="movie">
+        <video src="movie/1prize.mp4" muted id="movie_1prize"></video>
+        <video src="movie/2prize.mp4" muted id="movie_2prize"></video>
+        <video src="movie/3prize.mp4" muted id="movie_3prize"></video>
+        <video src="movie/kakuhen.mp4" muted id="movie_kakuhen"></video>
+    </div>
+
+</body>
+
+
+
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/kuji_jsseparating.js"></script>
+<script type="module" src="js/kujimodule.js"></script>
+
