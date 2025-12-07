@@ -1,5 +1,6 @@
 # ①課題名
 私たちは終わりを記録した
+<img width="259" height="284" alt="image" src="https://github.com/user-attachments/assets/e0e66eaf-defa-4d3e-8d7e-2371547938dc" />
 
 ## ②課題内容（どんな作品か）
 - くじ引きをより可視化させるべく、試行結果を保存・加算して表示させるシステムにしました！
@@ -7,7 +8,7 @@
 - 何十万・何百万分の１で出てくる夢の数字の重みをぜひ体感してください。
 
 ## ③アプリのデプロイURL
-https://tsat08ryuma.github.io/kadai03_memo/
+https://tsat08ryuma.github.io/kadai04_chat/
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 - ID: NA
@@ -23,4 +24,5 @@ https://tsat08ryuma.github.io/kadai03_memo/
 - 次回はAPIでAIとDBを組み合わせて色々と作ってみたいです。
 
 ## ⑦フリー項目（感想、シェアしたいこと等なんでも）
+
 - [感想]NASAのAPIでいったん遊んでみたのですがとても面白かったです。APIはすごい。
